@@ -15,27 +15,71 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = MdThemeLightPrimary,
+    onPrimary = MdThemeLightOnPrimary,
+    primaryContainer = MdThemeLightPrimaryContainer,
+    onPrimaryContainer = MdThemeLightOnPrimaryContainer,
+    secondary = MdThemeLightSecondary,
+    onSecondary = MdThemeLightOnSecondary,
+    secondaryContainer = MdThemeLightSecondaryContainer,
+    onSecondaryContainer = MdThemeLightOnSecondaryContainer,
+    tertiary = MdThemeLightTertiary,
+    onTertiary = MdThemeLightOnTertiary,
+    tertiaryContainer = MdThemeLightTertiaryContainer,
+    onTertiaryContainer = MdThemeLightOnTertiaryContainer,
+    error = MdThemeLightError,
+    errorContainer = MdThemeLightErrorContainer,
+    onError = MdThemeLightOnError,
+    onErrorContainer = MdThemeLightOnErrorContainer,
+    background = MdThemeLightBackground,
+    onBackground = MdThemeLightOnBackground,
+    surface = MdThemeLightSurface,
+    onSurface = MdThemeLightOnSurface,
+    surfaceVariant = MdThemeLightSurfaceVariant,
+    onSurfaceVariant = MdThemeLightOnSurfaceVariant,
+    outline = MdThemeLightOutline,
+    inverseOnSurface = MdThemeLightInverseOnSurface,
+    inverseSurface = MdThemeLightInverseSurface,
+    inversePrimary = MdThemeLightInversePrimary,
+    surfaceTint = MdThemeLightSurfaceTint,
+    outlineVariant = MdThemeLightOutlineVariant,
+    scrim = MdThemeLightScrim
 )
+
+
+private val DarkColorScheme = darkColorScheme(
+    primary = MdThemeDarkPrimary,
+    onPrimary = MdThemeDarkOnPrimary,
+    primaryContainer = MdThemeDarkPrimaryContainer,
+    onPrimaryContainer = MdThemeDarkOnPrimaryContainer,
+    secondary = MdThemeDarkSecondary,
+    onSecondary = MdThemeDarkOnSecondary,
+    secondaryContainer = MdThemeDarkSecondaryContainer,
+    onSecondaryContainer = MdThemeDarkOnSecondaryContainer,
+    tertiary = MdThemeDarkTertiary,
+    onTertiary = MdThemeDarkOnTertiary,
+    tertiaryContainer = MdThemeDarkTertiaryContainer,
+    onTertiaryContainer = MdThemeDarkOnTertiaryContainer,
+    error = MdThemeDarkError,
+    errorContainer = MdThemeDarkErrorContainer,
+    onError = MdThemeDarkOnError,
+    onErrorContainer = MdThemeDarkOnErrorContainer,
+    background = MdThemeDarkBackground,
+    onBackground = MdThemeDarkOnBackground,
+    surface = MdThemeDarkSurface,
+    onSurface = MdThemeDarkOnSurface,
+    surfaceVariant = MdThemeDarkSurfaceVariant,
+    onSurfaceVariant = MdThemeDarkOnSurfaceVariant,
+    outline = MdThemeDarkOutline,
+    inverseOnSurface = MdThemeDarkInverseOnSurface,
+    inverseSurface = MdThemeDarkInverseSurface,
+    inversePrimary = MdThemeDarkInversePrimary,
+    surfaceTint = MdThemeDarkSurfaceTint,
+    outlineVariant = MdThemeDarkOutlineVariant,
+    scrim = MdThemeDarkScrim
+)
+
 
 @Composable
 fun MovieApiAppComposeTheme(

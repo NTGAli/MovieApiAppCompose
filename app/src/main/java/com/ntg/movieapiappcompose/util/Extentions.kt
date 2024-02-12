@@ -1,12 +1,8 @@
 package com.ntg.movieapiappcompose.util
 
 import android.content.Context
-import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.view.LayoutInflater
-import android.view.View
-import com.ntg.movieapiappcompose.R
 import com.ntg.movieapiappcompose.data.local.MovieEntity
 import com.ntg.movieapiappcompose.data.model.Movie
 import timber.log.Timber
