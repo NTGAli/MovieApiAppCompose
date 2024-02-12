@@ -71,7 +71,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    
+
     // Paging
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
     implementation("androidx.paging:paging-compose:$pagingVersion")
@@ -106,6 +106,10 @@ dependencies {
 
     //timber
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    
 }
 kapt {
     correctErrorTypes = true
