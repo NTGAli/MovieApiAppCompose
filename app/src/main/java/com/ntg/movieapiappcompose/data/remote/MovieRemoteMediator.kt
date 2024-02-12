@@ -11,9 +11,9 @@ import androidx.room.withTransaction
 import com.ntg.movieapiappcompose.data.local.AppDB
 import com.ntg.movieapiappcompose.data.local.MovieEntity
 import com.ntg.movieapiappcompose.data.model.RemoteKeys
-import com.ntg.movieapiapp.util.Constants.API.MOVIE_API_STARTING_PAGE_INDEX
-import com.ntg.movieapiapp.util.orDefault
-import com.ntg.movieapiapp.util.toEntity
+import com.ntg.movieapiappcompose.util.Constants.API.MOVIE_API_STARTING_PAGE_INDEX
+import com.ntg.movieapiappcompose.util.orDefault
+import com.ntg.movieapiappcompose.util.toEntity
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)

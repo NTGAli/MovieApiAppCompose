@@ -1,6 +1,6 @@
 package com.ntg.movieapiappcompose.data.remote
 
-import com.ntg.movieapiapp.util.timber
+import com.ntg.movieapiappcompose.util.timber
 import okhttp3.logging.HttpLoggingInterceptor
 
 class LoggingInterceptor {
