@@ -76,7 +76,7 @@ fun MovieItem(
             }
         }
 
-        Text(modifier=Modifier.padding(vertical = 8.dp).padding(horizontal = 2.dp),text = movie.title, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        Text(modifier=Modifier.padding(vertical = 8.dp).padding(horizontal = 2.dp),text = movie.title, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
 
 
     }

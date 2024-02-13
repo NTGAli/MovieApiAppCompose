@@ -9,6 +9,7 @@ import timber.log.Timber
 
 
 fun Long?.orDefault() = this ?: 0L
+fun Float?.orZero() = this ?: 0f
 
 fun timber(msg: String) {
     Timber.d(msg)
