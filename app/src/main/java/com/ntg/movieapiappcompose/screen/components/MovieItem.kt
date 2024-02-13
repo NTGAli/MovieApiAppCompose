@@ -1,4 +1,4 @@
-package com.ntg.movieapiappcompose.screen
+package com.ntg.movieapiappcompose.screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
