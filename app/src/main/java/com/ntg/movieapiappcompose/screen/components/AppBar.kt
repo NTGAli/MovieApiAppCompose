@@ -33,7 +33,7 @@ fun AppBar(
             )
         })
 
-        if (scrollBehavior?.state?.contentOffset.orZero() < -25f) {
+        if (scrollBehavior?.state?.contentOffset.orZero() < -32f) {
             Divider(Modifier.height(1.dp), color = MaterialTheme.colorScheme.surfaceVariant)
         }
     }
