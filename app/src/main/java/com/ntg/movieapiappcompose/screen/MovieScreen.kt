@@ -139,7 +139,7 @@ private fun MovieListsItems(
         movies.loadState.refresh is LoadState.Error || movies.loadState.append is LoadState.Error || movies.loadState.prepend is LoadState.Error
 
     val loadingState =
-        movies.loadState.refresh is LoadState.Loading || movies.loadState.append is LoadState.Loading || movies.loadState.prepend is LoadState.Loading
+        movies.loadState.append is LoadState.Loading || movies.loadState.prepend is LoadState.Loading
 
     val spanCount =
         if (context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) LANDSCAPE_MODE_ITEM_SIZE else PORTRAIT_MODE_ITEM_SIZE
@@ -165,7 +165,9 @@ private fun MovieListsItems(
 
             items(1, span = { GridItemSpan(spanCount) }) {
                 if (loadingState) {
-                    CircularProgressIndicator()
+                    Box(contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
+                    }
                 }
             }
 
@@ -174,6 +176,8 @@ private fun MovieListsItems(
                     ErrorItem(modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)) {
                         movies.retry()
                     }
+
+
                 }
             }
 
