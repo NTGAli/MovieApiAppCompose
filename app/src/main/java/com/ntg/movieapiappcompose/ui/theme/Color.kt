@@ -3,7 +3,6 @@ package com.ntg.movieapiappcompose.ui.theme
 import androidx.compose.ui.graphics.Color
 
 
-val Seed = Color(0xFF4BC381)
 val MdThemeLightPrimary = Color(0xFF006D3F)
 val MdThemeLightOnPrimary = Color(0xFFFFFFFF)
 val MdThemeLightPrimaryContainer = Color(0xFF84FAB2)

@@ -10,5 +10,4 @@ data class MovieEntity(
     val movieId: Long,
     val backdropPath: String? = null,
     val title: String,
-//    val page: Int,
 )

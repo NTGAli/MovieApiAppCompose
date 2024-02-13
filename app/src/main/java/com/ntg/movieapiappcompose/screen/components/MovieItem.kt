@@ -40,7 +40,6 @@ fun MovieItem(
             .size(coil.size.Size.ORIGINAL)
             .build()
     )
-    val context = LocalContext.current
 
     Column(
         modifier = modifier
