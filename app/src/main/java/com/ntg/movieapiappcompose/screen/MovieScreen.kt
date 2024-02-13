@@ -34,14 +34,23 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInRoot
@@ -62,26 +71,41 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieScreen(
     movies: LazyPagingItems<Movie>,
     movieViewModel: MovieViewModel,
 ) {
-    val context = LocalContext.current
     var appBarHeight by remember {
         mutableStateOf(0.dp)
     }
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
-    Scaffold(topBar = {
-        AppBar()
-    }, content = {
-        appBarHeight = it.calculateTopPadding()
-        Content(movies, it)
-    })
+
+
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            AppBar(scrollBehavior = scrollBehavior)
+        }, content = {
+            appBarHeight = it.calculateTopPadding()
+            Content(movies, it) {
+                scope.launch {
+                    snackbarHostState.showSnackbar(it.title)
+                }
+            }
+        }, snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
+        })
 
     AnimateLogo(
-        topBarHeight = appBarHeight, speed =
-        if (movieViewModel.isAnimationStarted) 0 else LOGO_ANIMATION_DURATION, loading = movies.itemCount == 0
+        topBarHeight = appBarHeight,
+        speed =
+        if (movieViewModel.isAnimationStarted) 0 else LOGO_ANIMATION_DURATION,
+        loading = movies.itemCount == 0
     ) {
         movieViewModel.isAnimationStarted = true
     }
@@ -89,14 +113,18 @@ fun MovieScreen(
 }
 
 @Composable
-private fun Content(movies: LazyPagingItems<Movie>, paddingValues: PaddingValues) {
+private fun Content(
+    movies: LazyPagingItems<Movie>,
+    paddingValues: PaddingValues,
+    onClick: (Movie) -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
     ) {
         MovieListsItems(movies) {
-
+            onClick.invoke(it)
         }
     }
 }
@@ -129,7 +157,9 @@ private fun MovieListsItems(
                 tmdbItem?.let {
                     MovieItem(
                         movie = it
-                    )
+                    ) {
+                        onClick.invoke(it)
+                    }
                 }
             }
 
@@ -227,7 +257,8 @@ fun AnimateLogo(topBarHeight: Dp, loading: Boolean, speed: Int, animationFinishe
             .width(logo.intrinsicSize.width.dp)
             .offset {
                 offset
-            }.onGloballyPositioned { layoutCoordinates ->
+            }
+            .onGloballyPositioned { layoutCoordinates ->
                 val bottomCenter =
                     layoutCoordinates.parentCoordinates?.boundsInRoot()?.bottomCenter
                 logoOffset = IntOffset(

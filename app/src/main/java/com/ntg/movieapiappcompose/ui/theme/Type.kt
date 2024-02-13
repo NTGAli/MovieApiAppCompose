@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.sp
 
 val Typography = Typography(
     displayLarge = TextStyle(
-        fontSize = 20.sp,
+        fontSize = 24.sp,
         fontWeight = FontWeight.SemiBold,
         letterSpacing = 0.sp
     ),

@@ -31,33 +31,37 @@ import com.ntg.movieapiappcompose.data.model.Movie
 @Composable
 fun MovieItem(
     modifier: Modifier = Modifier,
-    movie: Movie
+    movie: Movie,
+    onClick: (Movie) -> Unit
 ) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(movie.backdropPath)
+            .data("https://image.tmdb.org/t/p/w500" + movie.backdropPath)
             .size(coil.size.Size.ORIGINAL)
             .build()
     )
     val context = LocalContext.current
 
-    Column(modifier = modifier
-        .padding(bottom = 24.dp)
-        .padding(horizontal = 8.dp)
-        .clip(RoundedCornerShape(8.dp))
-        .fillMaxSize()
-        .wrapContentHeight()
-        .clickable {
-            // handle it
-        },
-        horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = modifier
+            .padding(bottom = 24.dp)
+            .padding(horizontal = 8.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .fillMaxSize()
+            .wrapContentHeight()
+            .clickable {
+                onClick.invoke(movie)
+            },
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         if (painter.state is AsyncImagePainter.State.Success) {
             Image(
                 painter = painter,
-                contentDescription = "ads",
+                contentDescription = "cover",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.aspectRatio(0.714f)
+                modifier = Modifier
+                    .aspectRatio(0.714f)
                     .clip(RoundedCornerShape(8.dp))
             )
         } else {
@@ -65,18 +69,26 @@ fun MovieItem(
                 modifier = Modifier
                     .aspectRatio(0.714f)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(color = MaterialTheme.colorScheme.onBackground),
+                    .background(color = MaterialTheme.colorScheme.onTertiary),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.image),
+                    painter = painterResource(id = if (painter.state is AsyncImagePainter.State.Error) R.drawable.image_remove else R.drawable.image),
                     contentDescription = "",
-                    tint = MaterialTheme.colorScheme.secondary
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer
                 )
             }
         }
 
-        Text(modifier=Modifier.padding(vertical = 8.dp).padding(horizontal = 2.dp),text = movie.title, style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        Text(
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+                .padding(horizontal = 2.dp),
+            text = movie.title,
+            style = MaterialTheme.typography.titleSmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
 
 
     }
